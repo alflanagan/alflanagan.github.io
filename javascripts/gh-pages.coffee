@@ -4,7 +4,7 @@
 #
 ###
 
-do_wrap (ndx) -> $(this).wrap("<a href=\"" + $(this).text + "\"/>")
+do_wrap = (ndx) -> $(this).wrap("<a href=\"" + $(this).text + "\"/>")
 
 $(".repository-name").each do_wrap
 
