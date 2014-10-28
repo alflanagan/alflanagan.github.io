@@ -4,4 +4,4 @@
 #
 ###
 
-$ -> $(".repository-name").each -> $(this).wrap("<a href=\"" + $(this).text + "\"/>")
+$ -> $(".repository-name").each -> @wrap("<a href=\"" + @text + "\"/>")
