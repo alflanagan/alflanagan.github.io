@@ -11,16 +11,16 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
-    },
+    // concat: {
+    //   options: {
+    //     banner: '<%= banner %>',
+    //     stripBanners: true
+    //   },
+    //   dist: {
+    //     src: ['lib/<%= pkg.name %>.js'],
+    //     dest: 'dist/<%= pkg.name %>.js'
+    //   }
+    // },
     uglify: {
       options: {
         banner: '<%= banner %>'
@@ -55,6 +55,14 @@ module.exports = function(grunt) {
         src: ['lib/**/*.js', 'test/**/*.js']
       }
     },
+    coffee: {
+      files: ['javascripts/gh-pages.coffee']
+    },
+    clean: {
+      js: {
+        files: ['javascripts/gh-pages.js']
+      }
+    },
     qunit: {
       files: ['test/**/*.html']
     },
@@ -76,8 +84,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['coffee', 'jshint', 'concat', 'uglify']);
 
 };
